@@ -157,12 +157,11 @@ log/claude 안의 .jsonl 개수   : ★
 ------------------------------------------------------------------------
 3-2. 로그에 빠진 것
 ------------------------------------------------------------------------
-로그아웃·삭제로 사라진 구간    : ★ (없으면 "없음")
-Claude Code 밖에서 쓴 AI       : 10/23 13:40경 claude.ai의 Claude Code 클라우드 세션(서버 밖)에 과제 양식(docx)과 4주차 예시 파일
-                                 (CLAUDE.md, AI_LOG.md, README.md)을 주고 서비스 주제 제안과 프로젝트 뼈대 생성을 요청함.
-                                 결과: 주제(방값체크), CLAUDE.md, SPEC.md, AI_LOG.md, README.md, data/rooms.csv(가상 데이터),
-                                 data/README.md, app.py 홈, 빈 화면 2개, core.load_data, test_core.py 1개, 작업 지시문 → 첫 커밋(US-0).
-                                 AI_LOG.md #1에 기록함. ★ (내용 확인 후 수정)
+로그아웃·삭제로 사라진 구간    : 없음 ★(확인)
+                                 (참고) Claude Code는 학교 서버가 아니라 claude.ai 웹의 Claude Code 세션 하나에서 사용했습니다.
+                                 log/claude 는 그 환경의 ~/.claude/projects 를 그대로 복사한 것입니다.
+                                 학교 서버는 git clone 후 streamlit run app.py 실행에만 사용했습니다.
+Claude Code 밖에서 쓴 AI       : 없음 ★(확인)
 다른 사람의 코드·프롬프트     : 4주차 수업 예시 파일(CLAUDE.md, AI_LOG.md, README.md, 교수 제공)을 바탕으로 규칙 파일·기록 양식 작성 ★
 
 ------------------------------------------------------------------------

@@ -19,10 +19,10 @@
 ## 하지 말 것
 - 요청한 파일 외 수정, 전체 재작성, 비밀값 하드코딩
 - data/rooms.csv 내용 수정 (읽기만)
-- 이 프로젝트 폴더(rent_check) 밖의 파일 접근, rm -rf / sudo 실행
-- git commit / push 는 내가 직접 한다 (대신 커밋 메시지만 제안할 것)
+- 이 프로젝트 폴더(rent_check) 밖의 파일 접근, rm -rf / sudo 실행 (예외: 제출 직전 내가 요청하면 ~/.claude/projects 를 log/claude 로 복사만 한다)
+- git commit / push 는 내가 확인하고 "커밋해 줘"라고 할 때만 한다 (메시지는 "US-N: …" 형식)
 
 ## 검증
 - core.py 수정 시 python -m pytest -q 를 실행해 결과를 알려 줄 것
-- 화면 파일 수정 후에는 "streamlit run app.py 로 확인하라"고 알려 줄 것 (실행은 내가 한다)
+- 화면 파일 수정 후에는 streamlit AppTest 로 오류 없이 열리는지만 확인하고, "push 후 공개 주소에서 직접 확인하라"고 알려 줄 것 (화면 확인은 내가 한다)
 - SPEC.md의 "검증용 기대값" 표와 계산 결과가 다르면 고치기 전에 먼저 알려 줄 것
