@@ -1,4 +1,5 @@
 """진단 결과 화면."""
+import pandas as pd
 import streamlit as st
 
 import core
@@ -55,6 +56,24 @@ else:
 st.subheader("판정 근거")
 for reason in result["reasons"]:
     st.write(f"- {reason}")
+
+st.subheader("환산 월 비용 비교")
+chart_df = similar[["room_id", "monthly_cost"]].copy()
+chart_df["구분"] = "비교 매물"
+chart_df = pd.concat(
+    [chart_df, pd.DataFrame({"room_id": ["내 매물"], "monthly_cost": [my_cost], "구분": ["내 매물"]})],
+    ignore_index=True,
+)
+st.bar_chart(
+    chart_df,
+    x="room_id",
+    y="monthly_cost",
+    color="구분",
+    x_label="매물",
+    y_label="환산 월 비용 (만원)",
+    sort="monthly_cost",
+)
+st.caption(f"'내 매물' 막대를 비교 매물과 견주어 보세요. 적정 월 비용(중앙값)은 {result['fair_cost']:g}만원입니다.")
 
 st.subheader(f"비교한 매물 {len(similar)}건")
 st.dataframe(
