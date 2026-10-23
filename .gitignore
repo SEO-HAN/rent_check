@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.streamlit/secrets.toml
+app.log
+.venv/
+.DS_Store
+# 제출 직전에 복사하는 Claude Code 대화 기록 (zip에는 넣고 GitHub에는 올리지 않음)
+log/claude/
