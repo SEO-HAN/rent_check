@@ -62,8 +62,8 @@
 | US-0 | 완료 | 1ec6117 | 서버 밖 AI(웹 Claude Code)에서 뼈대 생성 → AI_LOG #1, 양식 3-2. 이후 정리 커밋: 9c34c3c, c5aef7f |
 | US-1 | 완료 | bd72f11, 67e2687 | app.py 는 US-0 뼈대에서 구현됨. bd72f11 완료 조건 점검 기록, 67e2687 "가상 데이터" 문구 수정 → AI_LOG #2 |
 | US-2 | 완료 | bb9278f | AI_LOG #3 |
-| US-3 | 완료 | 972eb1d | AI_LOG #4 |
+| US-3 | 완료 | 972eb1d, c437ec7 | AI_LOG #4. c437ec7: 판정 경계 반올림 오류 수정(AI_LOG #7) |
 | US-4 | 완료 | bbc7ac8 | AI_LOG #5 |
 | US-5 | 완료 | 44d41f1 | AI_LOG #6 |
-| US-6 | ☐ | | |
+| US-6 | 완료 | 9d0c9d7 | AI_LOG #8 |
 | 직접 수정 | ☐ | | AI 없이 (제출 양식 2-5) |
