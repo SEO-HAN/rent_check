@@ -1,4 +1,5 @@
 """방값체크 핵심 로직 — streamlit 을 import 하지 않는다 (pytest 로 바로 테스트)."""
+from numbers import Real
 from pathlib import Path
 
 import pandas as pd
@@ -34,7 +35,7 @@ def validate_input(room, df=None):
     ]
     for key, low, high, message in checks:
         value = room.get(key)
-        if not isinstance(value, (int, float)) or isinstance(value, bool) or not low <= value <= high:
+        if not isinstance(value, Real) or isinstance(value, bool) or not low <= value <= high:
             errors.append(message)
     return errors
 
@@ -67,10 +68,11 @@ def judge(my_cost, similar):
     fair_cost(중앙값), diff_pct(차이율 %), verdict(비쌈/적정/저렴), reasons(근거 문장 3개)
     """
     fair_cost = float(similar["monthly_cost"].median())
-    diff_pct = round((my_cost - fair_cost) / fair_cost * 100, 1)
-    if diff_pct >= 10:
+    raw_pct = round((my_cost - fair_cost) / fair_cost * 100, 9)  # 판정은 반올림 전 값으로 한다
+    diff_pct = round(raw_pct, 1)
+    if raw_pct >= 10:
         verdict = "비쌈"
-    elif diff_pct <= -10:
+    elif raw_pct <= -10:
         verdict = "저렴"
     else:
         verdict = "적정"
