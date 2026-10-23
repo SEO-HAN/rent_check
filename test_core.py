@@ -106,3 +106,24 @@ def test_validate_other_errors():
     assert len(errors) == 4
     assert core.validate_input(_room(deposit=np.int64(500), monthly_rent=np.int64(40))) == []
     assert core.validate_input(_room(monthly_rent="40")) != []
+
+
+def test_area_summary():
+    """지역 4 × 방 형태 3 = 12행, 각 10건이고 SPEC 기대값의 적정가(중앙값)와 일치한다."""
+    summary = core.area_summary(core.load_data())
+    assert list(summary.columns) == ["area", "room_type", "count", "monthly_rent", "monthly_cost"]
+    assert len(summary) == 12
+    assert (summary["count"] == 10).all()
+
+    def cost(area, room_type):
+        row = summary[(summary["area"] == area) & (summary["room_type"] == room_type)]
+        return float(row["monthly_cost"].iloc[0])
+
+    assert cost("와우리", "원룸") == pytest.approx(38.5)
+    assert cost("수원역", "1.5룸") == pytest.approx(54.25)
+
+
+def test_area_summary_empty():
+    """빈 데이터는 오류 없이 빈 표를 돌려준다."""
+    df = core.load_data().iloc[0:0]
+    assert core.area_summary(df).empty

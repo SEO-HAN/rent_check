@@ -85,3 +85,26 @@ def judge(my_cost, similar):
         f"비슷한 매물의 환산 월 비용 범위는 {low:g}~{high:g}만원이며, 판정은 '{verdict}'입니다.",
     ]
     return {"fair_cost": fair_cost, "diff_pct": diff_pct, "verdict": verdict, "reasons": reasons}
+
+
+def area_summary(df):
+    """지역·방 형태별 시세 요약표를 돌려준다. 빈 데이터면 열만 있는 빈 표를 돌려준다.
+
+    열: area, room_type, count(매물 수), monthly_rent(월세 중앙값),
+    monthly_cost(환산 월 비용 중앙값, 소수 1자리 이상 유지). 금액 단위는 만원.
+    """
+    columns = ["area", "room_type", "count", "monthly_rent", "monthly_cost"]
+    if df.empty:
+        return pd.DataFrame(columns=columns)
+    work = df.copy()
+    work["monthly_cost"] = [
+        monthly_cost(d, r, f)
+        for d, r, f in zip(work["deposit"], work["monthly_rent"], work["maintenance_fee"])
+    ]
+    summary = (
+        work.groupby(["area", "room_type"], sort=False)
+        .agg(count=("room_id", "count"), monthly_rent=("monthly_rent", "median"),
+             monthly_cost=("monthly_cost", "median"))
+        .reset_index()
+    )
+    return summary[columns]
