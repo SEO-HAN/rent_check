@@ -14,6 +14,7 @@ def get_data():
 
 
 st.title("진단 결과")
+st.caption("※ 수업용 가상 매물 120건을 기준으로 한 진단입니다. 실제 시세와 다를 수 있습니다.")
 
 room = st.session_state.get("room")
 if not room:
